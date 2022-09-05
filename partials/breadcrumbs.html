@@ -1,0 +1,12 @@
+<nav class="breadcrumb">
+<ul>
+{{- template "breadcrumbs" (dict "context" . "parent" .) }}
+</ul>
+</nav>
+{{- define "breadcrumbs" }}
+{{- $parent := .parent }}
+{{- with .context -}}
+{{- with .Parent }}{{- template "breadcrumbs" (dict "context" . "parent" $parent) -}}{{- end }}
+<li {{- if eq . $parent }} class="is-active"{{ end }}><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+{{- end -}}
+{{- end }}

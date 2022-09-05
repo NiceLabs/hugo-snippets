@@ -1,0 +1,5 @@
+{{ $page := . }}
+{{ if not (and .Parent .Parent.IsHome) }}
+  {{ $page = partial "top-level-page" .Parent }}
+{{ end }}
+{{ return $page }}
